@@ -7,5 +7,6 @@ resources:
 namespace: prueba-create
 images:
 - name: gcr.io/google-samples/hello-app:2.0
-  newName: gcr.io/google-samples/hello-app:1.0
+  newName: gcr.io/google-samples/hello-app
+  newTag: 1.0
 
