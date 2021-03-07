@@ -6,7 +6,7 @@ resources:
 - 02-service.yaml
 namespace: prueba-create
 images:
-- name: gcr.io/google-samples/hello-app
-  newName: gcr.io/google-samples/hello-app
-  newTag: 1.0
+- name: gcr.io/google-samples/hello-app:2.0
+  newName: chzgustavo/hello-gitops
+  newTag: latest
 
