@@ -4,6 +4,7 @@ resources:
 - 00-ns.yaml
 - 01-deployment.yaml
 - 02-service.yaml
+namespace: prueba-create
 images:
 - name: gcr.io/google-samples/hello-app
   newName: gcr.io/google-samples/hello-app
