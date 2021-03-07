@@ -4,5 +4,8 @@ resources:
 - 00-ns.yaml
 - 01-deployment.yaml
 - 02-service.yaml
-
+images:
+- name: gcr.io/google-samples/hello-app
+  newName: gcr.io/google-samples/hello-app
+  newTag: 1.0
 
