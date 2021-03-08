@@ -4,9 +4,9 @@ resources:
 - 00-ns.yaml
 - 01-deployment.yaml
 - 02-service.yaml
-namespace: prueba-create
+namespace: prueba
 images:
 - name: gcr.io/google-samples/hello-app:2.0
   newName: chzgustavo/hello-gitops
-  newTag: d1e511b567cc763104bc2ce415d86f0bb29caae1
+  newTag: latest
 
