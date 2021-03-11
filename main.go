@@ -8,7 +8,7 @@ import (
 )
 
 var (
-	message string = "default messagee."
+	message string = "por defecto."
 	sleepTime string = "1s"
 )
 
