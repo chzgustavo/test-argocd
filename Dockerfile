@@ -4,14 +4,14 @@ FROM golang:1.16.0-alpine AS builder
 RUN adduser -D -g '' gustavo
 # Create workspace
 WORKDIR /opt/app/
-COPY go.mod .
+COPY source/go.mod .
 # fetch dependancies
 RUN go mod download
 RUN go mod verify
 # copy the source code as the last step
 COPY . .
 # build the binary
-RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-w -s" -a -installsuffix cgo -o /go/bin/example .
+RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-w -s" -a -installsuffix cgo -o /go/bin/example source/main.go
 
 # build a small image
 FROM alpine:3.13.2
