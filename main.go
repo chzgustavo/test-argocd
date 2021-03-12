@@ -3,35 +3,39 @@ package main
 import (
 	"fmt"
 	"log"
+	"net/http"
 	"os"
-	"time"
 )
 
-var (
-	message string = "por defecto."
-	sleepTime string = "1s"
-)
+const PORT = 8080
 
 func main() {
-	for {
-		// get hostname from os
-		hostname, err := os.Hostname()
-		if err != nil {
-			log.Panicln("Error getting hostname.")
-		}
+	startServer(handler)
+}
 
-		// print message
-		if len(os.Getenv("MESSAGE")) != 0 {
-			message = os.Getenv("MESSAGE")
-		}
-		fmt.Printf("hostname: %s - %s\n", hostname, message)
+func startServer(handler func(http.ResponseWriter, *http.Request)){
+	http.HandleFunc("/", handler)
+	log.Printf("starting server...")
+	http.ListenAndServe(fmt.Sprintf(":%d", PORT), nil)
+}
 
-		// sleep time
-		if len(os.Getenv("SLEEP_TIME")) != 0 {
-			sleepTime = os.Getenv("SLEEP_TIME")
-		}
-
-		sleepTimeDuration, _ := time.ParseDuration(sleepTime)
-		time.Sleep(sleepTimeDuration)
+func handler(w http.ResponseWriter, r *http.Request){
+	log.Printf("received request from %s", r.Header.Get("User-Agent"))
+	host, err := os.Hostname()
+	if err != nil {
+		host = "unknown host"
 	}
+	fmt.Fprintf(w, "Hola Mundo!\n")
+	fmt.Fprintf(w, "Version: 1.0.0\n")
+	resp := fmt.Sprintf("Hello from %s\n", host)
+	_, err = w.Write([]byte(resp))
+	if err != nil {
+		log.Panicf("not able to write http output: %s", err)
+	}
+	/*resp = fmt.Sprintf("\nVersion: 1.0.0")
+	_, err = w.Write([]byte(resp))
+	if err != nil {
+		log.Panicf("not able to write http output: %s", err)
+	}*/
+
 }
