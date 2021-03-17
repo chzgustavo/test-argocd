@@ -25,7 +25,7 @@ func handler(w http.ResponseWriter, r *http.Request){
 	if err != nil {
 		host = "unknown host"
 	}
-	fmt.Fprintf(w, "Hola Mundo!\n")
+	fmt.Fprintf(w, "Hola Mundo Gustavo!\n")
 	fmt.Fprintf(w, "Version: 1.0.0\n")
 	resp := fmt.Sprintf("Hello from %s\n", host)
 	_, err = w.Write([]byte(resp))
